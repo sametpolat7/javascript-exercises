@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Syntax</title>
+</head>
+<body>
+    <header>
+        <h1>JS Syntax</h1>
+        JavaScript syntax is the set of rules, how JavaScript programs are constructed.
+        <!--
+            How to create variables?
+            var : x;
+            let : y;
+
+            How to use variables?
+            x = 5;
+            y = 6;
+            let z = x + y;
+        -->
+    </header>
+    <div> <!--JavaScript Values-->
+        <h2>JavaScript Values</h2>
+        The JavaScript syntax defines two types of values.
+        <ul>
+            <li>Fixed values</li>
+            <li>Variable values</li>
+        </ul>
+        Fixed values are called Literals. <br>
+        Variable values are called Variables.
+        <h3>JavaScript Literals</h3>
+        The two most important syntax rules for fixed values are:
+        <ol>
+            <li><b>Numbers</b> are written with or without decimals.</li>
+            <li><b>Strings</b> are text, written within double or single quotes.</li>
+        </ol>
+        <h3>JavaScript Variables</h3>
+        In a programming language, variables are used to store data values. <br>
+        JavaScript uses the keywords <b>var</b>, <b>let</b> and <b>const</b> to declare variables.
+        An <b>equal sign</b> is used to assign values to variables.
+    </div>
+    <div> <!--JavaScript Expressions -->
+        <h2>JavaScript Expressions</h2>
+        İfade, bir değere hesaplanan değerlerin, değişkenlerin ve işleçlerin birleşimidir.
+        Örneğin:
+        <p id="demo"></p>
+        <p id="demo2"></p>
+        <script>
+            document.getElementById("demo").innerHTML = 5 * 10; // 5 * 10 Bir Expressions'dur.
+            document.getElementById("demo2").innerHTML = "John" + " " + "Doe"; //Bir Expressions'dur. Ayrıca " " bu ifade bir iki string arasına bir boşluk tanımlamak için kullanılmıştır.
+        </script>
+    </div>
+    <div> <!--JavaScript Comments-->
+        <h2>JavaScript Comments</h2>
+        Code after double slashes // or between /* and */ is treated as a <b>comment.</b>
+        <ul>
+            <li>Single line comments start with //.</li>
+            <li>Multi-line comments start with /* and end with */.</li>
+        </ul>
+        <b>Note:</b> It is most common to use single line comments. <br>
+        Block comments are often used for formal documentation.
+    </div>
+    <div> <!--JavaScript Identifiers / Names -->
+        <h2>JavaScript Identifiers / Names</h2>
+        Tanımlayıcılar değişkenleri, anahtar sözcükleri ve işlevleri adlandırmak için kullanılır.
+        <b>Not:</b> İsimlerde ilk karakter olarak sayılara izin verilmez.
+        <b>Not2:</b> Tüm JavaScript tanımlayıcıları büyük/küçük harfe duyarlıdır.
+    </div>
+    <div> <!--JavaScript and Camel Case-->
+        <h2>JavaScript and Camel Case</h2>
+        JavaScript'te tire işaretlerine izin verilmez. Bunlar çıkarma işlemleri için ayrılmıştır. <br>
+        Örneğin: <br>
+        last-name, first-name etc..
+        <ul>
+            <li>Underscore: first_name, last_name, master_card, inter_city.</li>
+            <li>Upper Camel Case (Pascal Case): FirstName, LastName, MasterCard, InterCity.</li>
+            <li>Lower Camel Case: firstName, lastName, masterCard, interCity.</li>
+        </ul>
+        <b>Not:</b> JavaScript programcıları küçük harfle başlayan camel case kullanma eğilimindedir.
+    </div>
+</body>
+</html>

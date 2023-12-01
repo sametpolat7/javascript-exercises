@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Introduction</title>
+</head>
+<body>
+    <div> <!-- JavaScript can change HTML content -->
+        <h1>JavaScript can change HTML content</h1>
+        <p id="demo">
+            One of many JavaScript HTML methods is getElementById(). <br>
+            The example below "finds" an HTML element (with id="demo"), and changes the element content (innerHTML) to "Hello JavaScript":
+        </p>
+        <button type="button" onclick='document.getElementById("demo").innerHTML="Hello World!"'>Click Me!</button>
+    </div>
+    <div> <!-- JavaScript can change HTML Styles (CSS) -->
+        <h1>JavaScript can change HTML Styles</h1>
+        <p id="text">
+            Changing the style of an HTML element, is a variant of changing an HTML attribute:
+        </p>
+        <button type="button" onclick="document.getElementById('text').style.fontSize='35px'">Click Me!</button>
+    </div>
+    <div> <!-- JavaScript Can Hide or Show HTML Elements -->
+        <h1>JavaScript can Hide or Show HTML Elements</h1>
+        <p id="disp">
+            Hiding or Showing HTML elements can be done by changing the display style:
+        </p>
+        <button type="button" onclick="getElementById('disp').style.display='none'">Click to Hide</button>
+        <button type="button" onclick="getElementById('disp').style.display='block'">Click to Show</button>
+        <!--Bunu visibility:hidden ya da visibility:visible şeklinde de kurgulayabiliriz.-->
+    </div>
+    <h1>Did You Know?</h1>
+    <p>
+        JavaScript and Java are completely different languages, both in concept and design. <br>
+        JavaScript was invented by Brendan Eich in 1995, and became an ECMA standard in 1997. <br>
+        ECMA-262 is the official name of the standard. ECMAScript is the official name of the language.
+    </p>
+</body>
+</html>
