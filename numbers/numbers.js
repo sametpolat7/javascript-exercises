@@ -5,8 +5,8 @@ let numb1 = 3.14;
 console.log(`${numb} + ${numb1}`);
 
 // Ekstra büyük veya ekstra küçük sayılar bilimsel (üslü) gösterimle yazılabilir:
-let numb2 = 123e5;
-let numb3 = 123e-5;
+let numb2 = 123e5; // 5 tane sıfır ekler. --> 12.300.000
+let numb3 = 123e-5; // Virgülden sonra 5 basamak olmalı --> 0.00123
 console.log(numb2);
 console.log(numb3);
 

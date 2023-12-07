@@ -36,7 +36,7 @@ console.log(text20.search("JavaScript"));
 */
 
 // JavaScript String match()
-// match() yöntemi, bir stringi bir string ile (veya düzenli ifadeyle) eşleştirme sonuçlarını içeren bir array döndürür.
+// match() yöntemi, bir stringi bir string ile (veya düzenli ifadeyle) eşleştirme sonuçlarını içeren bir "array" döndürür.
 let text21 = "The rain in SPAIN stays mainly in the plain.";
 const myArray2 = text21.match("ain");
 document.getElementById("demo25").innerHTML = 

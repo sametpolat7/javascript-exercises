@@ -28,7 +28,7 @@ document.getElementById("demo34").innerHTML = text28;
 console.log(text28);
 
 // Interpolation
-// Şablon değişmezleri, değişkenleri ve ifadeleri stringlere enterpole etmek için kolay bir yol sağlar. Bu yönteme string enterpolasyonu adı verilir.           Syntax: ${...}
+// Şablon değişmezleri, değişkenleri ve ifadeleri stringlere enterpole etmek için kolay bir yol sağlar. Bu yönteme string enterpolasyonu adı verilir. Syntax: ${...}
 // Variable Substitutions
 let nickname = "Spartacus";
 let date = "2021";

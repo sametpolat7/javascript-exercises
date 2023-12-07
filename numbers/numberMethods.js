@@ -79,3 +79,26 @@ document.getElementById("demo14").innerHTML = Number(numb41);
 
 let numb42 = new Date("1970-01-02");
 document.getElementById("demo15").innerHTML = Number(numb42);
+
+// The parseInt() Method
+// parseInt() bir dizeyi ayrıştırır ve "bir tam sayı" döndürür. Boşluklara izin verilir. Yalnızca ilk sayı döndürülür:
+document.getElementById("demo16").innerHTML = 
+parseInt("10") + "<br>" +
+parseInt("-10") + "<br>" +
+parseInt("10.33") + "<br>" + 
+parseInt("10,33") + "<br>" +
+parseInt("10 6") + "<br>" + 
+parseInt("10 Years") + "<br>" +
+parseInt("Since 2011");
+
+// The parseFloat() Method
+// parseFloat() bir dizeyi ayrıştırır ve "bir sayı" döndürür. Boşluklara izin verilir. Yalnızca ilk sayı döndürülür:
+document.getElementById("demo17").innerHTML = 
+parseFloat("10") + "<br>" +
+parseFloat("-10") + "<br>" +
+parseFloat("10.33") + "<br>" + 
+parseFloat("10,33") + "<br>" +
+parseFloat("10 6") + "<br>" + 
+parseFloat("10 Years") + "<br>" +
+parseFloat("Since 2011");
+
