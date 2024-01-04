@@ -10,8 +10,7 @@ In JavaScript click is the "event", myFunction is the "event handler":
 */
 
 function timeFunction () {
-    document.getElementById("time").innerHTML =
-    Date();
+    document.getElementById("time").innerHTML = Date();
 }
 
 // Common HTML Events

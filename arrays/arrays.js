@@ -76,7 +76,7 @@ console.log(person.length);
 document.getElementById("demo2").innerHTML = person[0];
 
 // Accesing the Last Array Element
-document.getElementById("demo3").innerHTML = person[person.length -1];
+document.getElementById("demo3").innerHTML = person[person.length - 1];
 
 // Looping Array Elements
 // Bir dizi içinde döngü oluşturmanın bir yolu for döngüsü kullanmaktır:

@@ -38,7 +38,7 @@ console.log(d); // Expected "John"
 
 // JavaScript Strings
 // Stringi çevreleyen tırnak işaretleriyle eşleşmedikleri sürece, bir stringin içinde tırnak işaretleri kullanabilirsiniz.
-let fullName = "Samet Polat";
+let fullName = "'Samet Polat'"; 
 console.log(fullName);
 
 // JavaScript Numbers

@@ -61,7 +61,7 @@ document.getElementById("demo12").innerHTML = lolHeros;
 // length her zaman son öğenin indeks numarasının bir fazlasıdır.
 
 // JavaScript Array delete()
-// Dizi elemanları JavaScript operatörü delete kullanılarak silinebilir. Delete kullanmak dizide tanımlanmamış boşluklar bırakır. Bunun yerine pop() veya shift() kullanılması önerilir.
+// Dizi elemanları JavaScript operatörü delete kullanılarak silinebilir. Delete kullanmak dizide tanımlanmamış boşluklar bırakır. Bunun yerine pop() veya shift() veya splice() kullanılması önerilir.
 document.getElementById("demo13").innerHTML = lolHeros[2];
 delete lolHeros[2];
 document.getElementById("demo14").innerHTML = lolHeros;

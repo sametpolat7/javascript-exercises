@@ -20,7 +20,7 @@ document.getElementById("demo21").innerHTML = teams;
 
     Bunu bir "compare function" kullanarak düzeltebilirsiniz:
  */
-const pointsSorting = ["17", "10","121", "53", "98", "2", "25","37"];
+const pointsSorting = [17, 10, 121, 53, 98, 2, 25,37, 99, 247];
 document.getElementById("demo22").innerHTML = pointsSorting;
 pointsSorting.sort(function(a, b){return a - b});
 document.getElementById("demo23").innerHTML = pointsSorting;
@@ -36,7 +36,7 @@ document.getElementById("demo24").innerHTML = pointsSorting;
  * Sonuç pozitifse, b, a'dan önce sıralanır.
  * Sonuç 0 ise, iki değerin sıralama düzeninde herhangi bir değişiklik yapılmaz.
  */
-const number = ["40", "20", "30","100", "1", "1000", "7", "50"];
+const number = [40, 20, 30,100, 1, 1000, 7, 50];
 document.getElementById("demo25").innerHTML = number;
 function Alphabetically() {
     number.sort();
@@ -85,3 +85,36 @@ function lowestValue() {
 
 // Yalnızca en yüksek (veya en düşük) değeri bulmak istiyorsanız, tüm bir diziyi sıralamak çok verimsiz bir yöntemdir.
 
+// Using Math.max() on an Array
+// Bir dizideki en yüksek sayıyı bulmak için Math.max.apply kullanabilirsiniz:
+function highestNumber(pointsSorting) {
+    return Math.max.apply(null, pointsSorting)
+}
+console.log(highestNumber(pointsSorting));
+
+// Using Math.min() on an Array
+// Bir dizideki en düşük sayıyı bulmak için Math.min.apply kullanabilirsiniz:
+function lowestNumber(pointsSorting) {
+    return Math.min.apply(null, pointsSorting)
+}
+console.log(lowestNumber(pointsSorting));
+
+// Sorting Object Arrays
+// Nesnelerin farklı veri türlerinde özellikleri olsa bile, diziyi sıralamak için sort() yöntemi kullanılabilir. Çözüm, özellik değerlerini karşılaştırmak için bir karşılaştırma işlevi yazmaktır:
+const usCars = [
+    {type : "Volvo", year : 2021},
+    {type : "BMW", year : 2005},
+    {type : "Ford", year : 1967}
+];
+document.getElementById("demo32").innerHTML = 
+usCars[0].type + " " + usCars[0].year + "<br>" +
+usCars[1].type + " " + usCars[1].year + "<br>" +
+usCars[2].type + " " + usCars[2].year;
+
+function sortingUsCars() {
+    usCars.sort(function(a, b) {return a.year - b.year});
+    document.getElementById("demo32").innerHTML = 
+    usCars[0].type + " " + usCars[0].year + "<br>" +
+    usCars[1].type + " " + usCars[1].year + "<br>" +
+    usCars[2].type + " " + usCars[2].year;
+}

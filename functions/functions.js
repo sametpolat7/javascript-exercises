@@ -86,9 +86,9 @@ function toCelcius (fahrenheit) {
 Bir JavaScript fonksiyonu içinde bildirilen değişkenler, fonksiyon için LOCAL olur.
 Yerel değişkenlere yalnızca fonksiyon içinden erişilebilir.
 */
+telName();
 function telName () {
     let telephone = "Iphone 6S";
     document.getElementById("demo").innerHTML = telephone;
 }
-document.getElementById("demo").innerHTML = telephone;
-telName();
+document.getElementById("demo1").innerHTML = telephone; // Erişilemez.

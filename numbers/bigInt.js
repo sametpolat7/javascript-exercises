@@ -51,7 +51,7 @@ document.getElementById("demo5").innerHTML = result3;
 // BigInt ayrıca onaltılık, sekizlik veya ikili gösterimde de yazılabilir:
 let bigInt7 = 0x1000000000000000000n;
 let bigInt8 = 0o1000000000000000000n;
-let bigInt9 = 0b1000000000000000000n;
+let bigInt9 = 0b0000000000000000010n;
 document.getElementById("demo6").innerHTML = 
 bigInt7 + "<br>" + bigInt8 + "<br>" + bigInt9;
 
