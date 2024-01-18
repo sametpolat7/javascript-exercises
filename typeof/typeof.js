@@ -46,8 +46,22 @@ console.log(typeof myName); // Undefined
 * undefined
  */
 
-// Complex Data
+// Complex Data (Karmaşık Veri)
 // typeof işleci objects, arrays ve null için "object" döndürür. typeof işleci functions için "object" döndürmez.
+
+/** İlkel veri tipleri (primitives) ve karmaşık veri tipleri (objects) arasındaki temel farklar şunlardır:
+ * Değer ve Referans:
+    * İlkel Veri Tipleri (Primitives): İlkel veri tipleri, değeri doğrudan içerir. Değişkenlere atanan ilkel veri tipleri, bellekte değerlerini barındırır.
+    * Karmaşık Veri Tipleri (Objects): Karmaşık veri tipleri ise referansları içerir. Değişkenlere atanan karmaşık veri tipleri, bellekte gerçek veriyi değil, verinin bulunduğu bellek adresini içerir.
+
+ * İlerleme (Mutable) ve İlerlemezlik (Immutable):
+    * İlkel Veri Tipleri (Primitives): İlkel veri tipleri genellikle ilerlemez (immutable) olarak kabul edilir. Yani, bir kez oluşturulduktan sonra değerleri değiştirilemez.
+    * Karmaşık Veri Tipleri (Objects): Karmaşık veri tipleri genellikle ilerlemedir (mutable). Yani, bir nesnenin içeriği değiştirilebilir.
+
+ * Kopyalama ve Referans Aktarımı:
+    * İlkel Veri Tipleri (Primitives): Bir ilkel veri tipi, başka bir değişkene aktarıldığında değeri kopyalanır. Yani, bağımsız kopyalar oluşur.
+    * Karmaşık Veri Tipleri (Objects): Bir karmaşık veri tipi, başka bir değişkene aktarıldığında sadece referansı kopyalanır. Yani, aynı bellek adresine işaret eden iki değişken oluşur.
+ */
 
 // JavaScript'te diziler nesne olduğundan typeof operatörü diziler için "nesne" döndürür.
 
