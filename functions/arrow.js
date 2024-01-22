@@ -28,10 +28,7 @@ document.getElementById("demo10").innerHTML = hello3("User");
 // "This"'in işlenmesi de normal fonksiyonlara kıyasla ok fonksiyonlarında farklıdır. Kısacası, ok fonksiyonları ile "this"'in bağlayıcılığı yoktur.
 
 // Normal fonksiyonlarda "this" anahtar sözcüğü fonksiyonu çağıran nesneyi temsil eder; bu nesne pencere, belge, düğme ya da başka bir şey olabilir.
-
 // Ok fonksiyonlarında "this" anahtar sözcüğü fonksiyonun sahibini temsil eder:
-
-
 // Aradaki farkı anlamak için iki örneğe göz atalım.
 
 // Normal Function

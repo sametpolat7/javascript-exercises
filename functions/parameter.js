@@ -46,7 +46,7 @@ document.getElementById("demo16").innerHTML = snakeFunc(54, 99, 20, 82, 31, 10, 
 
 
 // The [arguments] Object
-// JavaScript'teki fonksiyonlarda, arguments adında özel bir nesne bulunur. Bu nesne, fonksiyon içindeki tüm argümanlarıiçerir. arguments nesnesi, fonksiyon içinde her zaman mevcuttur ve bir dizi "benzeri" bir nesnedir.
+// JavaScript'teki fonksiyonlarda, arguments adında özel bir nesne bulunur. Bu nesne, fonksiyon içindeki tüm argümanları içerir. arguments nesnesi, fonksiyon içinde her zaman mevcuttur ve dizilere "benzeyen" bir nesnedir.
 
 // arguments nesnesi, bir dizi benzeri bir nesne olmasına rağmen tam anlamıyla bir dizi değildir. Ancak, dizi benzeri davranış sergiler. Örneğin, length özelliğine ve indislerle erişmeye izin verir, ancak dizi üzerindeki bazı özel yöntemlere sahip değildir.
 function eagleFunc(...arg) {

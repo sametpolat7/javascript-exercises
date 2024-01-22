@@ -6,7 +6,7 @@
 //Bir JavaScript fonksiyonu, "function" anahtar sözcüğü, ardından bir ad ve ardından parantez () ile tanımlanır.
 //Parantezler virgülle ayrılmış parametre adlarını içerebilir: (parametre1, parametre2, ...)
 // Fonksiyon parametreleri, fonksiyon çağrıldığında fonksiyon tarafından alınan değerlerdir.
-// Fonksiyonun içinde, argümanlar (parametreler) yerel değişkenler gibi davranır.
+// Fonksiyonun içinde, parametreler yerel değişkenler gibi davranır.
 // Fonksiyon tarafından çalıştırılacak kod küme parantezleri içine yerleştirilir: {}
 
 
