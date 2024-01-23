@@ -4,11 +4,11 @@
 // this anahtar sözcüğü, nasıl kullanıldığına bağlı olarak farklı nesnelere atıfta bulunur:
 /**
  * Bir nesne yönteminde bu, nesneyi ifade eder.
- * Tek başına, bu global nesneyi ifade eder. (window object)
- * Bir fonksiyonda, bu global nesneye atıfta bulunur.
- * Bir fonksiyonda, katı modda, bu tanımsızdır. (undefided)
- * Bir olayda, bu, olayı alan öğeyi ifade eder. (Event handlers)
- * call(), apply() ve bind() gibi yöntemler bunu herhangi bir nesneye yönlendirebilir.
+ * Tek başına, this global nesneyi ifade eder. (window object)
+ * Bir fonksiyonda, this global nesneye atıfta bulunur.
+ * Bir fonksiyonda, strict modda, this tanımsızdır. (undefided)
+ * Bir eventte, this, eventi alan öğeyi ifade eder. (Event handlers)
+ * call(), apply() ve bind() gibi yöntemler thisi herhangi bir nesneye yönlendirebilir.
  */
 
 // this in a object method
