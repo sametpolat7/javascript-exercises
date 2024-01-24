@@ -1,33 +1,26 @@
 // JavaScript Closures
-// JavaScript değişkenleri Local veya Global Kapsama ait olabilir.
-// JS Closures, global değişkenleri lokal değişkenler haline getirebilir.
+// Bir closure (kapanış) bir iç fonksiyon ile dış fonksiyonun birleşimini ifade eder.
+// Bu yapı iç fonksiyonun, dış fonksiyonuna bağlı değişkenlere erişebimesini (hatta parametresine bile) sağlar.
+// Özellikle fonksiyonların başka fonksiyonlar içinde tanımlanmasında karşımıza çıkar.
 
-let abc = "abc";
-function Abc() {
-    return console.log(abc);
+function disFonksiyon(disParam) {
+    let disDegisken = 10;
+    function icFonksiyon(icParam) {
+        return disParam + disDegisken + icParam;
+    }
+    return icFonksiyon;
 }
-Abc();
 
-function Cba() {
-    let abc = "abc";
-    return console.log(abc);
-}
-Cba();
+const closureFonksiyon = disFonksiyon(5); // Bu satırda, dışFonksiyon adlı fonksiyonu çağırıyoruz ve bu fonksiyon bir iç fonksiyon olan içFonksiyon fonksiyonunu döndürüyor. Ancak, içFonksiyon fonksiyonunu doğrudan çağırmıyoruz, onun yerine dışFonksiyon'u çağırarak elde ettiğimiz fonksiyonu closureFonksiyon adlı bir değişkene atıyoruz.
+console.log(closureFonksiyon(3));
 
-// İlk örnekte, abc global bir değişkendir.
-// Bir web sayfasında, global değişkenler sayfaya aittir.
-// Global değişkenler sayfadaki diğer tüm komut dosyaları tarafından kullanılabilir (ve değiştirilebilir).
-
-// Son örnekte cba yerel bir değişkendir.
-// Yerel bir değişken yalnızca tanımlandığı işlevin içinde kullanılabilir. Diğer fonksiyonlardan ve diğer kodlama kodlarından gizlenir.
-// Aynı ada sahip global ve yerel değişkenler farklı değişkenlerdir. Birini değiştirmek diğerini değiştirmez.
+// Bu örnekte, disFonksiyon adlı bir fonksiyon, bir iç fonksiyonu olan icFonksiyon fonksiyonunu döndürüyor. 
+// Dış fonksiyonun kapsamındaki disParam ve diDegisken değişkenleri, iç fonksiyon tarafından kullanılabiliyor. 
+// ** disFonksiyon çağrıldığında, bir "closure" oluşur ve iç fonksiyon dışarı çıkartılarak closureFonksiyon adlı bir değişkene atanır. **
+// Daha sonra bu closureFonksiyon çağrıldığında, dış fonksiyonun kapsamındaki değişkenlere hala erişebilir.
 
 
-// Bildirim anahtar sözcüğü (var, let veya const) olmadan oluşturulan değişkenler, bir fonksiyon içinde oluşturulmuş olsalar bile her zaman globaldir. (Çünkü, arka planda var ile bildirilmişlerdir.)
-
-// Global değişkenler, başka bir sayfaya gittiğinizde veya pencereyi kapattığınızda olduğu gibi, sayfa silinene kadar yaşar.
-
-// Yerel değişkenlerin ömürleri kısadır. İşlev çağrıldığında oluşturulurlar ve işlev bittiğinde silinirler.
+// Closures, özellikle callback fonksiyonlar, event handler'lar ve asenkron programlamada kullanıldığında güçlü bir yapı oluşturabilir. Bu sayede değişkenlerin kapsamı kontrol altında tutularak beklenmeyen hataların önüne geçilebilir.
 
 
 // A Counter Dilemma (Sayma İkilemi)
@@ -42,9 +35,8 @@ countFunction();
 countFunction();
 
 console.log(counter);
-
-
-// Yukarıdaki çözümle ilgili bir sorun var: Sayfadaki herhangi bir kod countFunction() fonk. çağırmadan sayacı değiştirebilir. Diğer kodların değiştirmesini önlemek için sayaç countFunction() için yerel olmalıdır:
+// Yukarıdaki çözümle ilgili bir sorun var: Sayfadaki herhangi bir kod countFunction() fonk. çağırmadan sayacı değiştirebilir. (Başka bir blokta counter = 100 tanımlanabilir.)
+// Diğer kodların değiştirmesini önlemek için sayaç countFunction() için yerel olmalıdır:
 function countFunction1() {
     let counter = 0;
     return counter += 1;
@@ -54,21 +46,17 @@ countFunction1();
 countFunction1();
 
 console.log(countFunction1());
-
 // Çalışmadı çünkü fonksiyonu her çağırdığımızda yerel sayacı sıfırlıyoruz.
 
-// Bir JavaScript iç fonksiyonu bunu çözebilir.
-// Tüm fonksiyonların global kapsama erişimi vardır.  
-// Aslında, JavaScript'te tüm fonksiyonların "üstlerindeki" kapsama erişimleri vardır.
-// JavaScript iç içe fonksiyonları destekler. İç içe geçmiş fonksiyonlar "üstlerindeki" kapsama erişebilirler.
-// Bu örnekte, plus() iç fonksiyonunun üst fonksiyondaki sayaç değişkenine erişimi vardır:
-function countFunction2() {
-    let sayaç = 0;
-    plus();
-    function plus() {
-        return sayaç += 1;
-    }
-    return sayaç;
-}
-console.log(countFunction2());
+// Bir JavaScript iç fonksiyonu bunu çözebilir. Tüm fonksiyonların global kapsama erişimi vardır. Aslında, JavaScript'te tüm fonksiyonların "üstlerindeki" kapsama erişimleri vardır. JavaScript iç içe fonksiyonları destekler. İç içe geçmiş fonksiyonlar "üstlerindeki" kapsama erişebilirler.
 
+// Bu örnekte, sayman() iç fonksiyonunun üst fonksiyondaki sayaç değişkenine erişimi vardır:
+function countFunction2() {
+    let sayac = 0;
+    function sayman() {
+        sayac += 1;
+        return document.getElementById("demo23").innerHTML = sayac;
+    }
+    return sayman;
+}
+const closureFunc = countFunction2(); // closureFunc = sayman() düşünebiliriz. Artısı üst kapsam değişkenlerine erişim hakkıdır.
