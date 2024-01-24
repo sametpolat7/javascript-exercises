@@ -23,7 +23,6 @@ yourCar.name + " " + yourCar.year;
 
 
 // The Constructor Method
-
 // Tam adı "constructor" olmalıdır
 // Yeni bir nesne oluşturulduğunda otomatik olarak yürütülür.
 // Nesne özelliklerini başlatmak için kullanılır.
@@ -31,7 +30,6 @@ yourCar.name + " " + yourCar.year;
 
 
 // The Class Method
-
 // Sınıf yöntemleri, nesne yöntemleriyle aynı sözdizimiyle oluşturulur.
 // Bir sınıf oluşturmak için class anahtar sözcüğünü kullanın.
 // Her zaman bir constructor() yöntemi ekleyin.

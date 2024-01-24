@@ -24,11 +24,14 @@ class myFamily {
         this.age = age;
         this.nationality = nation;
         this.eyeColor = eye;
-        this.name = function() {
-            return this.firstName + " " + this.lastName;
-        }
+    }
+    name() {
+        return this.firstName + " " + this.lastName; // Bir closure olduğu için mi constructor dışına yazıldı?
     }
 }
+
+// Class syntaxı, esasen mevcut prototip tabanlı sistem üzerinde sözdizimsel bir şekerdir ve constructor "fonksiyonları" ve "methodlarını" tanımlamak için daha temiz ve daha yapılandırılmış bir yol sağlar.
+
 const mySister = new myFamily("Melek", "Polat", 30, "Turkish", "Black");
 document.getElementById("demo16").innerHTML = 
 `My sister name is ${mySister.firstName} ${mySister.lastName}. She is ${mySister.age}`;
@@ -80,7 +83,8 @@ console.log(mySister.from);
 
 // *** Sadece kendi prototiplerinizi değiştirin. Standart JavaScript nesnelerinin prototiplerini asla değiştirmeyin.
 
-
+const myBrother = new myFamily("Samet", "Polat");
+console.log(myBrother.name());
 
 
 
