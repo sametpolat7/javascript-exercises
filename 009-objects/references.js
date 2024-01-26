@@ -29,13 +29,13 @@ const referenceObj2 = {};
 
 Object.defineProperty(referenceObj2, "firstProperty", {
     value: 1,
-    writable: false, // Bu değer değiştirilemez.
+    writable: false, // Value değeri değiştirilemez.
     enumerable: true, // Döngülerde vs görünür.
-    configurable: false // Silinemez veya nitelikleri değiştirilemez.
+    configurable: false // Silinemez veya nitelikleri değiştirilemez. Sadece belirtilen property için. Object.seal() ile karıştırılmamalıdır. Bknz: Line 141.
 });
 
 console.log(referenceObj2.firstProperty); // Output : 1
-referenceObj2.firstProperty = 2; // Strict Modda Hata verir. Non-strict modda "sessizce" fail olur.
+referenceObj2.firstProperty = 2; // Strict Modda hata verir. Non-strict modda "sessizce" fail olur.
 console.log(referenceObj2.firstProperty); // Output : 1
 
 // Object.defineProperty() genellikle nesne özelliklerinin davranışı üzerinde ince ayarlı kontrole ihtiyaç duyduğunuzda kullanılır; örneğin salt okunur özellikler oluşturma, özellikleri numaralandırmadan gizleme veya özelliklerin silinmesini önleme gibi. Özellikle gelişmiş nesne manipülasyonu ile çalışırken ve basit atamanın ötesinde özellik davranışını tanımlarken kullanışlıdır.
@@ -92,105 +92,95 @@ const parent = {
 const child = Object.create(parent);
 console.log(child.c()); // My notes eklemesini yap. "Zincirde arıyor"
 
+console.log(Object.getPrototypeOf(child));
 console.log(Object.getPrototypeOf(child) === parent);
 
 // Object.getPrototypeOf(), özellikle miras (inheritance) veya nesne temsilcisiyle çalıştığınız senaryolarda, bir nesnenin prototipini incelemeniz veya ona erişmeniz gerektiğinde yaygın olarak kullanılır. [[Prototype]] dahili özelliğini doğrudan değiştirmeden veya ona erişmeden prototipe erişmenin basit bir yolunu sağlar.
 
 
+// Protecting Objects
+
+// 1. Object.preventExtensions(obj)
+// JavaScript'te Object.preventExtensions(), bir nesneye yeni özellikler eklenmesini engellemek için kullanılır. Bu yöntem bir nesne üzerinde çağrıldığında, nesne "genişletilemez" (non-extensible) hale gelir; yani nesneye yeni özellikler eklenemez, ancak mevcut özellikler değiştirilebilir veya silinebilir.
+const referenceObj4 = {
+    a: 1,
+    b: 2
+};
+Object.preventExtensions(referenceObj4);
+referenceObj4.c = 3;
+console.log(referenceObj4); // Output: a:1, b:2
+referenceObj4.a = 10;
+console.log(referenceObj4); // Output: a:10, b:2
+
+// Bunu iyi anlamak gerekir. Object.preventExtension() yeni bir property eklenmesini engelleyecektir. Value, writeable, numareable veya configureable attributes hala değiştirilebilir.
+console.log(Object.getOwnPropertyDescriptor(referenceObj4, "a")) // Output: {true, true, true}
+const deneme = Object.defineProperty(referenceObj4, "a", {
+    writable: false,
+    enumerable: false,
+    configurable: false
+})
+console.log(Object.getOwnPropertyDescriptor(referenceObj4, "a")) // Output: {false, false, false}
+
+// Bu yöntem, bir nesnenin yapısının sabit kalmasını sağlamak istediğinizde ve yanlışlıkla veya kötü niyetle yeni özellikler eklenmesini istemediğinizde kullanışlıdır. Değişmezliği zorlamaya ve kodunuzda tutarlılığı korumaya yardımcı olabilir.
+
+// Ancak Object.preventExtensions() işlevinin yalnızca doğrudan nesnenin kendisine yeni özellikler eklenmesini engellediğini unutmamak önemlidir. Mevcut özelliklerde değişiklik yapılmasını veya nesnenin prototip zincirinin özelliklerinde değişiklik yapılmasını engellemez. Ayrıca, prototip zincirinin bir parçası olan nesnelerdeki özelliklerin genişletilebilirliğini etkilemez.
+
+const referenceObj4Child = Object.create(referenceObj4);
+console.log(referenceObj4Child);
+// Parent konumundaki prototype nesne (referenceObj4) non-extensible olarak kalmaya devam eder. Ancak child konumundaki nesne referenceObj4Child üzerine yeni nesneler eklenebilir.
+referenceObj4Child.c = 5;
+console.log(referenceObj4Child);
 
 
+// 2. Object.isExtensible(obj)
+// JavaScript'te Object.isExtensible(), bir nesnenin genişletilebilir olup olmadığını belirlemek için kullanılır. Bir nesneye yeni özellikler eklenebiliyorsa nesne genişletilebilirdir. Bu yöntem, nesnenin genişletilebilir (true) veya genişletilemez (false) olduğunu belirten boolean bir değer döndürür.
+const isExtensible = Object.isExtensible(referenceObj4);
+console.log(isExtensible);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// MY NOTES
-
-// JavaScript nesneleri dildeki temel veri türlerinden (not primitive, its complex data type) biridir ve verilerin temsil edilmesi ve işlenmesinde merkezi bir rol oynarlar.
-
-// Nesneler, her anahtarın (key) bir string (veya sembol) olduğu ve her değerin (value) diğer nesneler de dahil olmak üzere herhangi bir veri türünde olabileceği anahtar-değer çiftlerinden oluşan koleksiyonlardır.
-
-// JavaScript'teki nesneler gerçek dünya varlıklarını ve özelliklerini modellemek için kullanılır.
-
-const myNoteObj = {
-    name: "Samet",
-    surName: "Polat",
-    bornDate: 1998,
-    age: function() {
-        return new Date().getFullYear() - this.bornDate;
-    }
+// 3. Object.seal()
+// JavaScript'te Object.seal() bir nesneyi mühürlemek için kullanılır; bu, nesneyi genişletilemez hale getirmek ve yeni özelliklerin eklenmesini engellemek anlamına gelir. Ayrıca, mevcut tüm özellikleri non-configurable olarak işaretler, yani silinemez veya nitelikleri (writeable veya ennumerable gibi) değiştirilemez. Ancak, mevcut özelliklerin değerleri yine de değiştirilebilir. (Çünkü writeable: false ayarlanır demiyor. Değiştirilemez diyor.)
+const referenceObj5 = {
+    a: 0,
+    b: 1
 }
-console.log(myNoteObj.name, myNoteObj.surName, myNoteObj.age());
+console.log(Object.getOwnPropertyDescriptor(referenceObj5, "a")); // Output: configureable: true;
 
-// Object Iteration
-// for...in döngüsü veya Object.keys(), Object.values() ve Object.entries() gibi çeşitli yöntemleri kullanarak bir nesnenin properties üzerinde "yineleme" yapabilirsiniz. Ancak bu sadece yinelenecek property nin "enumerable" niteliğinin "true" olduğu durumlarda geçerlidir.
+Object.seal(referenceObj5);
+referenceObj5.c = 10;
+console.log(referenceObj5); // Output: {a: 0, b: 1}
 
-// for in
-let myNoteTxt = "";
-for(let x in myNoteObj) {
-    myNoteTxt += x + ": " + myNoteObj[x] + "<br>";
-}
-document.getElementById("demo").innerHTML = myNoteTxt;
+// Değerleri değiştirilebilir.
+referenceObj5.a = 1;
+console.log(referenceObj5); // Output: {a: 1, b: 1}
 
-let keys = Object.keys(myNoteObj); // [Array] - Keys
-console.log(keys);
+// Non-configureable olarak işaretlenir. Mühürlendi.
+console.log(Object.getOwnPropertyDescriptor(referenceObj5, "a")) // Output: configureable: false BKNZ: Line 147
 
-let values = Object.values(myNoteObj); // [Array]- Values
-console.log(values);
 
-let entries = Object.entries(myNoteObj); // [Array] - [Key - Values]
-console.log(entries);
+// 4. Object.isSealed()
+// JavaScript'te Object.isSealed(), bir nesnenin mühürlü olup olmadığını belirlemek için kullanılan bir yöntemdir. Bir nesne genişletilebilir değilse (Object.preventExtension) (yani, yeni özellikler eklenemiyorsa) ve mevcut tüm özellikleri yapılandırılamıyorsa (configureable: false ya da Object.seal) (yani, nitelikleri değiştirilemiyorsa) mühürlü olarak kabul edilir.
+console.log(Object.isSealed(referenceObj5));
 
-// Object Constructor
-// JavaScript'te nesne kurucusu, nesneleri oluşturmak ve başlatmak için kullanılan bir işlevdir. Benzer özelliklere ve davranışlara sahip nesnelerin örneklerini oluşturmak için bir "plan" görevi görür. Aynı yapıya sahip birden fazla nesne oluşturmak istediğinizde, bir nesne kurucu işlevi tanımlayabilir ve ardından yeni nesneler oluşturmak için bu işlevi kullanabilirsiniz.
-function ConstructorFunction(what, where, when) {
-    this.ne = what;
-    this.nerde = where;
-    this.neZaman = when;
 
-    // Ayrıca bir methodda tanımlayabilirim.
-    this.generalInfo = function() {
-        return this.ne + " " + this.nerde + " " + this.neZaman;
-    }
-}
-const event1 = new ConstructorFunction("Football Match", "NEF Stadium", new Date().toDateString());
-const event2 = new ConstructorFunction("Football Match", "Sukru Saracoglu", new Date(2024, 0, 24).toDateString());
-console.log(event1.generalInfo());
-console.log(event2.generalInfo());
+// 5. Object.freeze()
+// JavaScript'te Object.freeze(), bir nesneyi değişmez hale getirmek için kullanılan bir yöntemdir. Bir nesneyi dondurduğunuzda, nesne "donmuş" hale gelir, yani property eklenemez, silinemez veya değiştirilemez. Ayrıca, mevcut tüm özellikler configureable: false ve writeable: false durumuna gelir.
+const referenceObj6 = {
+    a: 0,
+    b: 1,
+    c: 10
+};
+Object.freeze(referenceObj6);
+const descriptor1 = Object.getOwnPropertyDescriptors(referenceObj6);
+console.log(descriptor1)
 
-// Yukarıdaki örnekte, ConstructorFunction bir" nesne kurucu fonksiyondur". Bu fonksiyonla birlikte "new" anahtar sözcüğünü kullandığınızda, yeni bir nesne oluşturulur ve yapıcıya aktarılan parametrelere göre özellikleri ayarlanır. Yapıcı içindeki "this" anahtar sözcüğü "yeni" oluşturulan "nesneyi" ifade eder.
+referenceObj6.d = 101;
+console.log(referenceObj6);
 
-// Nesne kurucularını kullanmak, kodun yeniden kullanılabilirliğini destekleyecek şekilde kod oluşturmanıza ve düzenlemenize yardımcı olur. Paylaşılan özelliklere ve davranışlara sahip nesneler için bir şablon tanımlamanıza olanak tanır. Modern JavaScript'te, nesne kurucuları oluşturmak ve prototipleri yönetmek için daha uygun bir yol sağlayan "sınıf" tabanlı sözdizimi ve "class" anahtar sözcüğünün de bulunduğunu unutmayın.
-class FootballMatches {
-    constructor(when, where, result) {
-        this.when = when;
-        this.where = where;
-        this.result = result;
-    }
-    generalInfo() {
-        return this.when + "<br>" + this.where + " " + this.result;
-    }
-}
-const GS = new FootballMatches(new Date().toDateString(), "NEF Arena", "3-0");
-const FB = new FootballMatches(new Date(2024, 0, 24).toDateString(), "Basaksehir Stadium", "0-1");
-document.getElementById("demo1").innerHTML = GS.generalInfo();
-document.getElementById("demo2").innerHTML = FB.generalInfo();
-console.log(typeof GS, Object.entries(GS));
+referenceObj6.c = 101;
+console.log(referenceObj6);
 
-// Bu örnekte, class anahtar sözcüğü, yapıcı ve yöntemleri daha kısa ve okunabilir bir şekilde tanımlamak için kullanılmıştır. Ancak, kaputun altında JavaScript sınıflarının hala prototip kalıtımına ve kurucu işlevlere dayandığını anlamak önemlidir.
+
+// 6. Object.isFrozen()
+// JavaScript'te Object.isFrozen(), bir nesnenin dondurulmuş olup olmadığını belirlemek için kullanılan bir yöntemdir. Bir nesne genişletilebilir değilse (yani, yeni özellikler eklenemiyorsa) ve mevcut tüm özellikleri yapılandırılamaz ve yazılamazsa donmuş olarak kabul edilir.
+console.log(Object.isFrozen(referenceObj6));
