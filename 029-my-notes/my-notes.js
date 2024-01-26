@@ -36,21 +36,24 @@ let entries = Object.entries(myNoteObj); // [Array] - [Key - Values]
 console.log(entries);
 
 // Object Constructor
-// JavaScript'te nesne kurucusu, nesneleri oluşturmak ve başlatmak için kullanılan bir işlevdir. Benzer özelliklere ve davranışlara sahip nesnelerin örneklerini oluşturmak için bir "plan" görevi görür. Aynı yapıya sahip birden fazla nesne oluşturmak istediğinizde, bir nesne kurucu işlevi tanımlayabilir ve ardından yeni nesneler oluşturmak için bu işlevi kullanabilirsiniz.
+// JavaScript'te nesne kurucusu, nesneleri oluşturmak ve başlatmak için kullanılan bir fonksiyondur. Benzer özelliklere ve davranışlara sahip nesnelerin örneklerini oluşturmak için bir "şablon" görevi görür. Aynı yapıya sahip birden fazla nesne oluşturmak istediğinizde, bir nesne kurucu fonksiyonu tanımlayabilir ve ardından yeni nesneler oluşturmak için bu fonksiyonu kullanabilirsiniz.
 function ConstructorFunction(what, where, when) {
-    this.ne = what;
-    this.nerde = where;
-    this.neZaman = when;
+    this.what = what;
+    this.where = where;
+    this.when = when;
 
     // Ayrıca bir methodda tanımlayabilirim.
     this.generalInfo = function() {
-        return this.ne + " " + this.nerde + " " + this.neZaman;
+        return this.what + " " + this.where + " " + this.when;
     }
 }
 const event1 = new ConstructorFunction("Football Match", "NEF Stadium", new Date().toDateString());
 const event2 = new ConstructorFunction("Football Match", "Sukru Saracoglu", new Date(2024, 0, 24).toDateString());
 console.log(event1.generalInfo());
 console.log(event2.generalInfo());
+
+console.log(event1);
+console.log(event2);
 
 // Yukarıdaki örnekte, ConstructorFunction bir" nesne kurucu fonksiyondur". Bu fonksiyonla birlikte "new" anahtar sözcüğünü kullandığınızda, yeni bir nesne oluşturulur ve yapıcıya aktarılan parametrelere göre özellikleri ayarlanır. Yapıcı içindeki "this" anahtar sözcüğü "yeni" oluşturulan "nesneyi" ifade eder.
 
@@ -69,9 +72,42 @@ const GS = new FootballMatches(new Date().toDateString(), "NEF Arena", "3-0");
 const FB = new FootballMatches(new Date(2024, 0, 24).toDateString(), "Basaksehir Stadium", "0-1");
 document.getElementById("demo1").innerHTML = GS.generalInfo();
 document.getElementById("demo2").innerHTML = FB.generalInfo();
-console.log(typeof GS, Object.entries(GS));
+
+console.log(GS);
+console.log(FB);
 
 // Bu örnekte, class anahtar sözcüğü, yapıcı ve yöntemleri daha kısa ve okunabilir bir şekilde tanımlamak için kullanılmıştır. Ancak, kaputun altında JavaScript sınıflarının hala prototip kalıtımına ve kurucu işlevlere dayandığını anlamak önemlidir.
+
+// Bu ne demek? JavaScript'te, ECMAScript 2015'te (ES6) tanıtılan class sözdizimi, yapıcı işlevler ve prototiplerle çalışmak için daha kullanışlı ve etkileyici bir yol sağlar. class anahtar sözcüğünü kullandığınızda, geleneksel sınıf tabanlı nesne yönelimli programlama dilleriyle çalışıyormuşsunuz gibi görünür, ancak JavaScript'in sınıf sisteminin mevcut prototip tabanlı kalıtımın üzerine inşa edildiğini anlamak çok önemlidir.
+
+// Bir class oluşturduğunuzda ve new anahtar sözcüğünü kullanarak nesneleri ondan örneklediğinizde, JavaScript hala prototip zincirlerini ve kurucu işlevlerini kullanır. Class sözdizimi, esasen mevcut prototip tabanlı sistem üzerinde yapıcı işlevleri ve yöntemlerini tanımlamak için daha temiz ve daha yapılandırılmış bir yol sağlar.
+
+class myNotesConstructor {
+    constructor(name, surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+    fullName() {
+        return this.name + " " + this.surname;
+    }
+};
+const myNotesPerson = new myNotesConstructor("Mauro", "Icardi");
+console.log(myNotesPerson.fullName());
+
+console.log(myNotesPerson instanceof myNotesConstructor);
+console.log(myNotesPerson instanceof Object);
+
+// Bu örnekte, myNotesPerson, myNotesConstructor sınıfının bir örneğidir, ancak aynı zamanda Object sınıfının da bir örneğidir. Bunun nedeni, sonuçta JavaScript'teki tüm nesnelerin Object prototipinden miras almasıdır.
+console.log(myNotesPerson);
+
+// Peki, nesne kalıtımı nedir? Prototype zinciri ne anlama gelir?
+// "JavaScript'in prototip tabanlı doğası", nesne kalıtımı ve nesne ilişkileri için dilin temel mekanizmasını ifade eder. JavaScript'te her nesnenin, özelliklerini miras aldığı başka bir nesne olan ilişkili bir prototipi vardır. Bu, prototip zinciri olarak bilinen bir nesne zinciri oluşturur.
+
+// JavaScript'teki her nesnenin, tüm prototip zincirlerinin kökü olan "temel nesne" prototipi vardır. Prototip başka bir nesnedir. Bir nesne üzerindeki bir özelliğe eriştiğinizde, JavaScript o özelliği nesnenin kendisinde arar. Bulamazsa, nesnenin prototipine bakar ve böylece bir zincir oluşturur.
+
+// JavaScript'te nesne oluşturmak için kurucu işlevler kullanılır. Bir kurucu işlev kullanarak bir nesne oluşturduğunuzda, yeni nesne kurucunun prototipinden özellikleri ve yöntemleri devralır. Bir kurucu fonksiyonun prototip özelliği, o kurucu kullanılarak oluşturulan nesnelerin prototipi haline gelen bir nesnedir.
+
+// Nesneler prototipleri aracılığıyla birbirine bağlanarak bir zincir oluşturur. Bir nesne üzerindeki bir özelliğe eriştiğinizde, JavaScript özelliği bulana veya zincirin sonuna ulaşana kadar prototip zincirini dolaşır. Bu zincir, nesnelerin prototiplerinden özellikleri ve davranışları miras alabildiği bir kalıtım biçimine olanak sağlar.
 
 
 
