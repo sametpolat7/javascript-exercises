@@ -1,4 +1,4 @@
-// JavaScript Object References And Notes
+// JavaScript Object References
 // REFERENCES
 
 // Managing Objects
@@ -24,7 +24,7 @@ console.log(team);
 
 
 // 2. Object.defineProperty(obj, prop, descriptor)
-// JavaScript'te Object.defineProperty(), doğrudan bir nesne üzerinde yeni bir özellik tanımlamak veya mevcut bir özelliği değiştirmek için kullanılır. Bir özelliğin değeri (value), writeable, numerable ve configureable gibi çeşitli yönlerini tam olarak kontrol etmenizi sağlar.
+// JavaScript'te Object.defineProperty(), doğrudan bir nesne üzerinde yeni bir özellik tanımlamak veya mevcut bir özelliği değiştirmek için kullanılır. Bir özelliğin değeri (value), writeable, enumerable ve configureable gibi çeşitli yönlerini tam olarak kontrol etmenizi sağlar.
 const referenceObj2 = {};
 
 Object.defineProperty(referenceObj2, "firstProperty", {
@@ -67,6 +67,8 @@ console.log(referenceObj3.prop2);
 const descriptor = Object.getOwnPropertyDescriptor(referenceObj3, "prop1");
 console.log(descriptor);
 
+// 4.1 Object.getOwnPropertyDescriptors(obj)
+console.log(Object.getOwnPropertyDescriptors(referenceObj3));
 
 // 5. Object.getOwnPropertyNames(obj)
 // JavaScript'te Object.getOwnPropertyNames(), belirli bir nesnenin tüm özellik adlarının (numaralandırılamayan özellikler dahil) bir dizisini almak için kullanılır. Nesnenin prototip zincirindeki özellikleri içermez. Bu yöntem, sayılabilirliklerine (aksi durumda for ... in döngüsünde gözükmez) bakılmaksızın bir nesnenin tüm özelliklerine erişmeniz gerektiğinde özellikle kullanışlıdır.
@@ -90,7 +92,7 @@ const parent = {
     }
 }
 const child = Object.create(parent);
-console.log(child.c()); // My notes eklemesini yap. "Zincirde arıyor"
+console.log(child.c()); // My notes eklemesini yap. "Zincirde arıyor" // İşte bu yüzden main Object Prototype a tanımlı methodlar tüm nesneler için kullanılabilirdir. Çünkü Object Prototype tüm nesnelerin ortak prototipidir.
 
 console.log(Object.getPrototypeOf(child));
 console.log(Object.getPrototypeOf(child) === parent);
