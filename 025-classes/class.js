@@ -49,3 +49,80 @@ class child {
 const myBoy = new child("Selim", 2007);
 document.getElementById("demo1").innerHTML =
 "My boy is " + myBoy.age() + " years old.";
+
+
+// "use strict"
+// Sınıflardaki sözdizimi "katı modda" yazılmalıdır. "Sıkı mod" kurallarına uymazsanız bir hata alırsınız. Örneğin class içinde bir değişkeni bildirmeden kullanmak isterseniz bir hata alırsınız.
+
+
+// Class Inheritance
+// JavaScript sınıf kalıtımı, yeni sınıfın mevcut sınıftan özellikleri ve yöntemleri miras aldığı mevcut sınıfları temel alan yeni sınıflar oluşturma kavramını ifade eder. Bu, kodun yeniden kullanılmasına ve paylaşılan işlevselliğe sahip bir sınıflar hiyerarşisi oluşturulmasına olanak tanır.
+class companyCars {
+    constructor(brand) {
+        this.carBrand = brand;
+    }
+    present() {
+        return `We have a ${this.carBrand}. `;
+    }
+};
+
+class mainCars extends companyCars {
+    constructor(brand, model) {
+        super(brand);
+        this.carModel = model;
+    }
+    show() {
+        return this.present() + `Car model is ${this.carModel}.`;
+    }
+};
+const businessCar = new mainCars("Ford", "Connect");
+console.log(businessCar.show());
+
+console.log(businessCar);
+
+// The super() method refers (atıfta bulunmak) to the parent class.
+// By calling the super() method in the constructor method, we call the parent's constructor method and gets access to the parent's properties and methods.
+
+
+// Static Methods
+// JavaScript'te, bir sınıf tanımı içindeki static anahtar sözcüğü, statik bir method veya property tanımlamak için kullanılır. Statik method veya propertyler, sınıfın örnekleri (sınıfı prototipi alan yeni nesneler) yerine sınıfın kendisiyle ilişkilendirilir. Bu, sınıfın bir örneğini oluşturmaya gerek kalmadan doğrudan sınıftan erişilebilecekleri anlamına gelir.
+class StaticExample {
+    static exampleProp = "This is static property";
+
+    static exampleMeth() {
+        return console.log(this.exampleProp);
+    }
+};
+StaticExample.exampleMeth();
+
+// Property'nin constructor içinde olmamasına dikkat et. Çünkü statik yöntemler veya özellikler, sınıfın örnekleri yerine sınıfın kendisiyle ilişkilendirilir.
+
+// Bir perspektif olması açısından başka bir örnek:
+class MathUtility {
+    static add(a, b) {
+        return a + b;
+    }
+    
+    static substract(a, b) {
+        return a - b;
+    }
+
+    static multiply(a, b) {
+        return a * b;
+    }
+
+    static divine(a, b) {
+        if(b === 0) {
+            throw new Error("Division by zero")
+        } else {
+            return a / b;
+        }
+    }
+}
+
+console.log(MathUtility.add(10, 5));
+console.log(MathUtility.substract(10, 5));
+console.log(MathUtility.multiply(10, 5));
+console.log(MathUtility.divine(10, 5));
+
+console.log(MathUtility.divine(10, 0));
