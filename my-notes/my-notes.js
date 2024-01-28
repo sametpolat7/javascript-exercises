@@ -150,3 +150,22 @@ console.log(myNotesPerson);
 // // Try to delete property 'a' (this won't work)
 // delete obj.a;
 // console.log(obj); // Output: { a: 1, b: 2 }
+
+
+
+
+
+
+// The new keyword in JavaScript is used to create instances of objects that are defined by constructor functions. It's an essential part of object-oriented programming in JavaScript. While it does introduce some overhead, it's generally not significant enough to noticeably affect execution speed in most scenarios.
+
+// Here's a breakdown of the potential implications:
+
+// Overhead: Using new does involve some overhead. When you use new, JavaScript engine has to do several things behind the scenes, like creating a new object, setting up the prototype chain, and binding this to the new object within the constructor function.
+
+// Execution Speed: While there's some overhead, it's usually negligible in typical use cases. Modern JavaScript engines are highly optimized and can handle new efficiently. In most cases, the overhead introduced by new is insignificant compared to other factors affecting execution speed.
+
+// Readability and Maintainability: Despite the slight overhead, using new often improves code readability and maintainability, especially in object-oriented code. It makes the code more explicit and follows common conventions for object instantiation.
+
+// Alternative Patterns: In some cases, especially in modern JavaScript with ES6 classes and functional programming patterns, you may encounter alternative patterns that don't rely heavily on new. For instance, you might use factory functions or object literals instead of constructor functions. These patterns can be useful in certain contexts but might not always be appropriate or necessary.
+
+// In summary, while the new keyword does introduce some overhead, it's generally not a significant concern for most JavaScript applications. It's an essential part of the language's object-oriented programming features and provides benefits in terms of code clarity and organization. As always, it's important to consider the specific requirements and performance characteristics of your application when making design decisions.
