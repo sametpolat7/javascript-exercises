@@ -78,7 +78,7 @@ Bir object method içinde "this", nesneyi ifade eder.
 Tek başına "this" global nesneyi ifade eder.
 Bir fonksiyonda, "this" global nesneye atıfta bulunur.
 Bir fonksiyonda, strict modda, "this" tanımsızdır.
-Bir olayda, bu, olayı alan öğeyi ifade eder.
+Bir olayda, this, olayı alan öğeyi ifade eder.
 call(), apply() ve bind() gibi yöntemler bunu herhangi bir nesneye yönlendirebilir.
 */
 
@@ -181,10 +181,10 @@ document.getElementById("demo").innerHTML = person2Text;
 
 // Property Attributes
 // Tüm propertylerin bir adı vardır. Aynı zamanda bir değere de sahiptir.
-// Değer, propertylerin özniteliklerinden sadece biridir.
-// Diğer öznitelikler : sayılabilme, yapılandırılabilme, yazılabilme vs...
+// Değer (value), propertylerin özniteliklerinden sadece biridir.
+// Diğer öznitelikler : sayılabilme, yapılandırılabilme, yazılabilme. (enumareable, configureable, writeable)
 // Bu öznitelikler propertye nasıl erişilebileceğini tanımlar (okunabilir mi?, yazılabilir mi?)
-// JavaScript'te tüm öznitelikler okunabilir, ancak yalnızca değer özniteliği değiştirilebilir (ve yalnızca property yazılabilirse).
+// JavaScript'te tüm öznitelikler okunabilir.
 
 // Prototip Özellikleri
 // JavaScript nesneleri, prototiplerinin özelliklerini miras alır.
