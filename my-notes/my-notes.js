@@ -169,3 +169,18 @@ console.log(myNotesPerson);
 // Alternative Patterns: In some cases, especially in modern JavaScript with ES6 classes and functional programming patterns, you may encounter alternative patterns that don't rely heavily on new. For instance, you might use factory functions or object literals instead of constructor functions. These patterns can be useful in certain contexts but might not always be appropriate or necessary.
 
 // In summary, while the new keyword does introduce some overhead, it's generally not a significant concern for most JavaScript applications. It's an essential part of the language's object-oriented programming features and provides benefits in terms of code clarity and organization. As always, it's important to consider the specific requirements and performance characteristics of your application when making design decisions.
+
+
+
+
+
+
+
+
+// Bir nesne, inheritance zinciri boyunca method araması yaparken öncelikle kendi prototipine bakar, eğer aradığı methodu bulamazsa daha üst prototiplere doğru ilerler.
+
+// JavaScript'te, bir nesnenin prototipi (prototype chain) özellikle inheritance (miras alma) durumlarında oldukça önemlidir. Bir nesne üzerinde bir method çağrısı yapıldığında, JavaScript motoru öncelikle bu methodun nesnenin kendisine ait olup olmadığını kontrol eder. Eğer nesnenin kendisine ait bir method bulamazsa, prototip zinciri boyunca yukarı doğru ilerleyerek arama yapar.
+
+// Özetle, bir nesne inheritance zinciri boyunca method araması yaparken önce kendi prototipi (ve üst prototipleri) kontrol edilir ve ardından daha üst prototiplere doğru ilerlenir. Eğer aranan method hiçbir prototipte bulunamazsa, JavaScript hata verir.
+
+

@@ -125,12 +125,6 @@ chAttribute.setAttribute("disabled", true);
 
 
 
-
-
-
-
-
-
 // document (küçük harf), tarayıcı penceresinde yüklü olan geçerli HTML belgesi nesnesini ifade eder. Bir web sayfasının içeriğini değiştirmek için JavaScript kullandığınızda etkileşimde bulunduğunuz asıl nesnedir.
 
 // Belge (büyük harf), DOM belirtiminde tanımlanan arabirimi ifade eder. Bu arayüz, DOM'daki belgelerin (hem HTML hem de XML) uyduğu ortak yöntemleri ve özellikleri tanımlar. JavaScript kodunuzda doğrudan etkileşimde bulunduğunuz bir şeyden ziyade kavramsal bir tanımdır. DOM spesifikasyonu içinde bir belgenin yeteneklerini ve yapısını tanımlayan şeydir.

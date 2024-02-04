@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS HTML DOM</title>
 </head>
+<style>
+    #perspective-con {
+        width: 250px;
+        height: 150px;
+        margin: auto;
+        border: 1px solid black;
+        position: relative;
+        perspective: 200px;
+    }
+
+    #perspective-item {
+        border: 1px solid black;
+        padding: 50px;
+        position: absolute;
+        background-color: red;
+        transform: rotateX(45deg);
+    }
+</style>
 <body>
     <p id="demo"></p>
     <p id="demo1">I AM DEMO1</p>
@@ -38,8 +56,54 @@
     <p id="demo17"></p>
     <p id="demo18"></p>
     <p id="demo19"></p>
+    <div>
+        <form id="myForm" action="#" onsubmit="return validateForm()">
+            <label for="input">Name: </label>
+            <input type="text" name="fname" id="input">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <hr>
+    <div>
+        <p>Please write a number 5 between 10.</p>
+        <label for="number">Number : </label>
+        <input type="text" id="input1">
+        <button onclick="validateNumber()">Go!</button>
+    </div>
+    <hr>
+    <div>
+        <form action="#">
+            <label for="input2">Number : </label>
+            <input type="text" name="fname" id="input2" pattern="[A-Za-z]+">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <p id="demo20">
+        Lorem ipsum dolor sit amet.
+    </p>
+    <div>
+        <h1 id="demo21">Lorem ipsum dolor sit amet.</h1>
+        <button id="colorChanger">Click!</button>
+    </div>
+    <hr>
+    <br>
+    <div> <!-- Animation -->
+        <div id="anime-container">
+            <div id="animation"></div>
+        </div>
+        <button id="start-anime">Go!</button>
+    </div>
+    <div style="margin-bottom: 20rem;"> <!-- Animation Example -->
+        <div id="perspective-con">
+            <div id="perspective-item">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente dolores repellendus perspiciatis!
+            </div>
+        </div>
+        <button id="start-perspective">Go!</button>
+    </div>
 
     <script src="dom.js"></script>
     <script src="dom-forms.js"></script>
+    <script src="dom-css.js"></script>
 </body>
 </html>

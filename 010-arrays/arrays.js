@@ -93,7 +93,7 @@ let text1 = "<ul>";
 fruits.forEach(myFunction1);
 text1 += "</ul>";
 
-document.getElementById("demo5").innerHTML = text;
+document.getElementById("demo5").innerHTML = text1;
 
 function myFunction1(value) {
     text1 += "<li>" + value + "<li>";
