@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS HTML DOM Events</title>
+</head>
+<style>
+    div {
+        margin-top: 2rem;
+    }
+
+    #anime-item {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: brown;
+        position: relative;
+        animation: next 4s ease 1s 2;
+    }
+
+    @keyframes next {
+        from {left: 0;}
+        to {left: 100%;}
+    }
+
+    #myDropdown {
+        padding: 1rem;
+        text-align: center;
+        background-color: olive;
+        color: white;
+        font-size: 1.5rem;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown-list {
+        display: none;
+        list-style-type: none;
+        width: 140px;
+        border: 1px solid gray;
+    }
+
+    .dropdown-list li {
+        padding: 1rem;
+        cursor: pointer;
+    }
+
+    .show {
+        display: block;
+    }
+
+    #demo5 {
+        height: 144px;
+        text-align: center;
+        font-size: 2rem;
+        background-color: grey;
+    }
+
+    #demo8 {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: yellow;
+    }
+
+    #demo9 {
+        display: none;
+        width: 240px;
+        height: 180px;
+        border: 1px solid black;
+        background-color: grey;
+    }
+</style>
+<body>
+    <div id="anime-item"></div>
+    <p id="demo"></p>
+    <div> <!-- Blur Event-->
+        <input type="text" id="demo1">
+        <p id="demo2"></p>
+    </div>
+    <div> <!--change event -->
+        <select name="" id="demo3">
+            <option value="BMW">BMW</option>
+            <option value="Audi">Audi</option>
+            <option value="Opel">Opel</option>
+        </select>
+
+        <p id="demo4"></p>
+    </div>
+    <div> <!--click event-->
+        <button id="myDropdown">Dropdown</button>
+            <ul class="dropdown-list">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+    </div>
+    <div id="demo5"> <!--contextmenu event-->
+        Try right click with mouse.
+    </div>
+    <div> <!--copy event-->
+        <input type="email" value="Enter your e-mail" id="demo6">
+        <p id="demo7"></p>
+    </div>
+    <div> <!--dblclick event-->
+        <div id="demo8">
+            Click twice!
+        </div>
+        <div id="demo9">
+            <h4>Lorem, ipsum.</h4>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+        </div>
+    </div>
+
+    
+    <script src="dom-event.js"></script>
+</body>
+</html>
