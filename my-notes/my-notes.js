@@ -184,3 +184,20 @@ console.log(myNotesPerson);
 // Özetle, bir nesne inheritance zinciri boyunca method araması yaparken önce kendi prototipi (ve üst prototipleri) kontrol edilir ve ardından daha üst prototiplere doğru ilerlenir. Eğer aranan method hiçbir prototipte bulunamazsa, JavaScript hata verir.
 
 
+
+
+
+// Document Object Window Object ve Object.prototype Farkları
+// JavaScript'te, bir nesnenin prototipi belge veya pencere nesnesi içinde saklanmaz. Bunun yerine, JavaScript'in nesne kalıtımını nasıl yönettiğinin iç mekaniğinin bir parçasıdır.
+
+// JavaScript'teki her nesne, esasen başka bir nesneye referans olan bir prototipe sahiptir. Bu prototip nesne, söz konusu nesnenin örnekleri tarafından erişilebilen özellikler ve yöntemler içerir.
+
+// Bir nesne üzerindeki bir özelliğe veya yönteme eriştiğinizde, JavaScript önce bu özelliğin veya yöntemin doğrudan nesnenin kendisinde olup olmadığını kontrol eder. Bulamazsa, JavaScript nesnenin prototipine bakar ve özellik veya yöntem orada bulunursa kullanılır.
+
+// Prototip zinciri, bir nesneden prototipine ve bu prototipten prototipine ve en üst düzey Object.prototype'a ulaşana kadar devam eden bir dizi referanstır. Bu zincir, özellik ve yöntem aramalarını çözümlemek için kullanılır.
+
+// Şimdi, belge ve pencere nesneleriyle ilgili olarak:
+
+// Belge nesnesi, o anda yüklü olan HTML sayfasının DOM'unu (Belge Nesne Modeli) temsil eder. Belgenin yapısı ve içeriğiyle ilgili özellikler ve yöntemler içerir.
+// Window nesnesi, tarayıcı ortamındaki global nesnedir. DOM'u içeren pencereyi temsil eder ve tarayıcının global kapsamına erişim sağlar. Tarayıcı penceresi ve JavaScript çalışma zamanı ortamıyla ilgili özellikler ve yöntemler içerir.
+// Ne belge ne de pencere nesnesi diğer nesnelerin prototipini doğrudan saklamaz. Bunun yerine, prototipler her JavaScript nesnesinin iç yapısının bir parçasıdır ve JavaScript çalışma zamanı tarafından yönetilir.
