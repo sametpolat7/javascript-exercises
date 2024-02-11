@@ -55,3 +55,19 @@ localStorage.removeItem("mertktopal25")
 
 // The clear() Method
 localStorage.clear();
+
+
+// Web Worker API
+// JavaScript'te bir web çalışanı, web sayfasının ana yürütme iş parçacığından ayrı olarak arka planda yürütülen bir JavaScript dosyasıdır. JavaScript kodunu ana yürütme iş parçacığına paralel olarak çalıştırmanıza olanak tanıyarak görevlerin kullanıcı arayüzünün performansını ve yanıt verebilirliğini etkilemeden gerçekleştirilmesini sağlar.
+
+// Web çalışanları, karmaşık hesaplamalar, büyük veri kümelerini ayrıştırma veya aksi takdirde ana iş parçacığını engelleyip web sayfasının yanıt vermemesine neden olabilecek algoritmaları çalıştırma gibi CPU yoğun görevleri gerçekleştirmek için kullanışlıdır.
+
+const worker = new Worker("worker.js");
+
+// Web çalışanları ayrı bir global bağlamda çalışır ve DOM ya da pencere nesnesine doğrudan erişimleri yoktur. Ana iş parçacığı ile olay tabanlı bir mesajlaşma sistemi aracılığıyla iletişim kurarlar, ana iş parçacığına veri göndermek için postMessage() yöntemini kullanırlar ve onmessage olay işleyicisini kullanarak mesajları dinlerler.
+
+worker.onmessage = (event) => {
+    console.log("Message from worker: ", event.data);
+}
+
+worker.postMessage("Hello from main.js");
