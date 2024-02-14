@@ -1,147 +1,76 @@
-// JavaScript ASYNC
+// JS Asynchronous Operations
+// Asenkron (Eşzamansız) işlemlerde, görevler eşzamanlı (sıralı) olarak yürütülebilir ve görevler işlenirken programın çalışmaya devam etmesine olanak tanır. Asenkron işlemler programın yürütme akışını engellemez. Bu, özellikle görevlerin bir sunucudan veri alma veya dosya okuma/yazma gibi G/Ç işlemlerini beklemeyi içerdiği senaryolarda daha iyi yanıt verme ve verimlilik sağlar. Eşzamansız işlemler callbacks, promises ve async/await gibi çeşitli teknikler kullanılarak uygulanabilir.
 
 // Callbacks
-// Callback, başka bir fonksiyona "argüman" olarak aktarılan bir fonksiyondur. Bu teknik, bir fonksiyonun başka bir fonksiyonu çağırmasına olanak tanır. Bir callback fonksiyonu, başka bir fonksiyonun işi bittikten sonra çalışabilir.
+// Geri aramalar, başka bir fonksiyona argüman olarak aktarılan ve işlem tamamlandığında çağrılan fonksiyonlardır. Promises ve async/await kullanılmaya başlamadan önce JavaScript'te asenkron işlemleri gerçekleştirmenin yaygın bir yolu olmuştur.
 
-// Sequence Control
-// Bazen bir fonksiyonun ne zaman çalıştırılacağı üzerinde daha iyi kontrol sahibi olmak istersiniz.
-
-// Bir hesaplama yapmak ve ardından sonucu görüntülemek istediğinizi varsayalım:
-const display = (sum) => document.getElementById("demo").innerHTML = sum;
-
-const calculate = (a, b) => {
-    return a + b;
-};
-
-let result = calculate(5, 10);
-display(result);
-
-// Ya da
-const display2 = (result) => document.getElementById("demo1").innerHTML = result;
-
-const calculate2= (a, b) => {
-    let add = a + b;
-    display2(add);
-};
-calculate2(5, 10);
-
-// Yukarıdaki ilk örnekle ilgili sorun, sonucu görüntülemek için iki fonksiyon çağırmanız gerektiğidir.
-
-// İkinci örnekteki sorun, hesap makinesi işlevinin sonucu görüntülemesini engelleyememenizdir.
-
-// Bu durumlardan callback fonksiyonu ile kurtulabilirsiniz.
-
-// Callback Function
-// Callback, başka bir fonksiyona "argüman" olarak aktarılan bir işlevdir.
-const cbDisplay = (result) => document.getElementById("demo2").innerHTML = result;
-
-const cbCalculate = (a, b, myCallBack) => {
-    let sum = a + b;
-    myCallBack(sum);
-};
-
-cbCalculate(5, 10, cbDisplay); // Burada cbDisplay fonksiyonu "callback" olarak adlandırılır. cbCalculate fonksiyonuna "argüman" olarak eklenir.
-
-// Bir fonksiyon "argüman" olarak ilettildiğinde, parantez kullanılmaz.
-
-// Callbacklerin gerçekten parladığı yerler, bir fonksiyonun başka bir fonksiyonu beklemek zorunda olduğu asenkron fonksiyonlardır.
-
-
-// Asynchronous JavaScript
-// Diğer fonksiyonlarla paralel çalışan fonksiyonlara asenkron denir. Bunun iyi bir örneği:
-
-
-// setTimeout()
-// setTimeout() fonksiyonunu kullanırken, zaman aşımında yürütülecek bir callback fonksiyonu belirtebilirsiniz:
-setTimeout(asyncFunc, 3000);
-
-function asyncFunc() {
-    return document.getElementById("demo3").innerHTML = "Where am i?";
-};
-
-// Bu örnekte asyncFunc bir callback olarak kullanılmıştır. setTimeout() fonksiyonuna argüman olarak eklenmiştir.
-// Burada JavaScript işlem parçacığı sıralı şekilde yürütmeye devam ederken (yürütme başlangıcından itibaren 3sn sayarak ve zamanı geldiğinde) paralel olarak asyncFunc işlevini yürütmüştür.
-
-// setTimeout() ile çalışırken bir fonksiyonun adını başka bir işleve argüman olarak aktarmak yerine, isterseniz tüm fonksiyonuda aktarabilirsiniz:
-setTimeout(
-    () => {
-        document.getElementById("demo4").innerHTML = "When did i move?"
-    }, 4000
-);
-
-
-// setInterval()
-// setInterval() işlevini kullanırken, her aralık için yürütülecek bir callback fonksiyonu belirtebilirsiniz:
-setInterval(asyncFunc1, 1000);
-
-function asyncFunc1() {
-    let time = new Date();
-    document.getElementById("demo5").innerHTML = 
-    `${time.getHours()}:
-    ${time.getMinutes()}:
-    ${time.getSeconds()}`
+function fetchData(callback) {
+    setTimeout(() => {
+        const data = {
+            name: "Samet",
+            surName: "Polat",
+            id: 21254
+        };
+        callback(data);
+    }, 2000);
 }
 
-// Bu örnekte asyncFunc1, bir callback olarak kullanılmıştır. 1000 aralıklar arasındaki milisaniye sayısıdır, bu nedenle myFunction() her saniye çağrılacaktır.
+function displayData(data) {
+    console.log("Data : ", data);
+}
 
-// Eşzamansız (Asynchronous) programlama ile JavaScript programları uzun süre çalışan görevleri başlatabilir ve diğer görevleri paralel olarak çalıştırmaya devam edebilir. Ancak, asenkron programların yazılması ve hata ayıklaması zordur.
+fetchData(displayData);
+console.log("Fetching data...");
 
-// Bu nedenle, çoğu modern asenkron JavaScript yöntemi callback kullanmaz. Bunun yerine, JavaScript'te asenkron programlama "Promises" kullanılarak çözülür.
+
+// Promises
+// Promise'ler, callback'lere kıyasla asenkron işlemleri ele almak için daha temiz bir yol sağlar. Bir promise, asenkron bir işlemin nihai olarak tamamlanmasını veya başarısız olmasını temsil eder ve birden fazla asenkron işlemin zincirleme olarak gerçekleştirilmesine olanak tanır.
+
+function fetchDataforPromise() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const data = {
+                name: "Özlem",
+                surName: "Özcan",
+                id: 58954
+            };
+            resolve(data);
+        }, 3000)
+    });
+}
+
+fetchDataforPromise()
+.then((data) => {
+    console.log("Data : ", data);
+})
+.catch(() => {
+    console.log("Error. Data is not found.")
+})
 
 
-// JavaScript Promises
-// Bir "Promise" hem "üreten" kodu, hem de "tüketen" koda yapılan çağrıları içerir:
+// async and await
+// Async/await, promise'lerin üzerine inşa edilmiştir ve eşzamansız kodun eşzamanlı görünmesini sağlayarak okunmasının ve anlaşılmasının daha kolay olmasını sağlar.
 
-// "Üretim kodu" (Biraz zaman alabilir.)
-let myPromise = new Promise(function(resolve, reject) {
-    resolve(); // Eğer yürütme başarılı olursa
-    reject(); // Eğer yürütme hata verirse
-});
+function fetchDataforAsync() {
+    return new Promise((resolve, reject) => {
+    setTimeout(() => {
+        const data = {
+            name: "Guest",
+            surName: "",
+            id: null
+        };
+        resolve(data);
+    }, 4000)
+})
+}
 
-// "Tüketim Kodu" (Yerine getirilmiş bir "Promise" için beklemelidir.)
-myPromise.then(
-    function(value) {
-        // Başarılı olursa kod.
-    },
-    function(error) {
-        // Hata verirse kod.
+async function fetchDataForAwait() {
+    try {
+        const data = await fetchDataforAsync();
+        console.log("Data : ", data);
+    }catch(error) {
+        console.log("Something wrong", error);
     }
-)
+}
 
-// Üreten kod sonucu elde ettiğinde, iki geri aramadan birini çağırmalıdır:
-// Başarılı olursa --> resolve()
-// Hata verirse    --> reject()
-
-
-// Promise Object Properties
-// Bir "Promise" nesnesi şu state (durumlarda) olabilir:
-
-// Pending (Beklemede - Çalışıyor) Değer --> Tanımsız (undefined)
-// Fulfilled (Yerine getirildiğinde) Değer --> Sonuç değeri
-// Rejected (Reddedildiğinde) Değer --> Hata nesnesi
-
-// Promise nesnesi iki propertyi destekler: state(durum) ve result(sonuç).
-// Ancak promise özelliklerinin durumuna ve sonucuna erişemezsiniz. Vaatleri işlemek için bir "Promise" yöntemi kullanmalısınız.
-
-// Bu ifade, JavaScript'te promise'lerle ilgili önemli bir kavramı açıklar. Promise'lerin temel özelliklerinden biri, içlerinde sakladıkları durum ve sonuca erişimi sınırlamalarıdır. Bu sınırlama, promise'lerin asenkron işlemleri yönetirken güvenilir bir şekilde çalışmasını sağlar.
-
-// Promise nesnesinin bu durumlarına ve sonuçlarına doğrudan erişmek mümkün değildir. Bunun yerine, bu bilgilere erişmek için promise'lerin sağladığı yöntemler kullanılır. Örneğin, .then() yöntemi, bir promise'nin başarılı bir şekilde tamamlanması durumunda çalışacak olan bir fonksiyonu kabul eder. Benzer şekilde, .catch() yöntemi, bir promise'nin reddedilmesi durumunda çalışacak olan bir fonksiyonu kabul eder.
-
-let myPromise1 = new Promise((resolve, reject) => {
-    let x = 0;
-
-    if(x === 0) {
-        resolve("OK");
-    } else {
-        reject("Error!");
-    }
-});
-
-myPromise.then(
-    (value) => {
-        document.getElementById("demo6").innerHTML = value;
-    },
-    (error) => {
-        document.getElementById("demo6").innerHTML = error;
-    }
-)
+fetchDataForAwait();
