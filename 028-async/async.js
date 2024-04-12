@@ -2,7 +2,7 @@
 // Asenkron (Eşzamansız) işlemlerde, görevler eşzamanlı (sıralı) olarak yürütülebilir ve görevler işlenirken programın çalışmaya devam etmesine olanak tanır. Asenkron işlemler programın yürütme akışını engellemez. Bu, özellikle görevlerin bir sunucudan veri alma veya dosya okuma/yazma gibi G/Ç işlemlerini beklemeyi içerdiği senaryolarda daha iyi yanıt verme ve verimlilik sağlar. Eşzamansız işlemler callbacks, promises ve async/await gibi çeşitli teknikler kullanılarak uygulanabilir.
 
 // Callbacks
-// Geri aramalar, başka bir fonksiyona argüman olarak aktarılan ve işlem tamamlandığında çağrılan fonksiyonlardır. Promises ve async/await kullanılmaya başlamadan önce JavaScript'te asenkron işlemleri gerçekleştirmenin yaygın bir yolu olmuştur.
+// Callbacks, başka bir fonksiyona argüman olarak aktarılan ve işlem tamamlandığında çağrılan fonksiyonlardır. Promises ve async/await kullanılmaya başlamadan önce JavaScript'te asenkron işlemleri gerçekleştirmenin yaygın bir yolu olmuştur.
 
 function fetchData(callback) {
     setTimeout(() => {
